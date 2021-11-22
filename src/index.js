@@ -1,19 +1,19 @@
 import ReactDOM from "react-dom";
 import React from "react";
 
-import { Locations, locationsList } from "~/src/locations";
-import { Skills, skillsList } from "~/src/skills";
-import { Inventory, itemsList, initialInventory } from "~/src/items";
+import { Locations, useLocations } from "~/src/locations";
+import { Skills, useSkills } from "~/src/skills";
+import { Inventory, itemsList, useInventory } from "~/src/items";
 import { updateArray } from "~/src/common/utils";
 
 const App = () => {
-  const [skills, setSkills] = React.useState(skillsList);
-  const [locations, setLocations] = React.useState(locationsList);
-  const [inventory, setInventory] = React.useState(initialInventory);
+  const { skills, setSkills } = useSkills();
+  const { locations, setLocations, currentLocation, setCurrentLocation } =
+    useLocations();
+  const { inventory, setInventory, equippedItem, setEquippedItem } =
+    useInventory();
   const [tickRate] = React.useState(500);
   const tickRef = React.useRef();
-  const [currentLocation, setCurrentLocation] = React.useState(0);
-  const [equippedItem, setEquippedItem] = React.useState("stonePickAxe");
 
   React.useEffect(() => {
     tickRef.current = setInterval(() => {
