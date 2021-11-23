@@ -1,4 +1,4 @@
-function getBaseLog(base, x) {
+function getBaseLog(base: number, x: number) {
   return Math.log(x) / Math.log(base);
 }
 
@@ -14,14 +14,14 @@ const growthFactor = 1.3;
 const xShift = -2;
 const timeConstant = 1 / 2;
 
-const getXpDiffFromPrevLevel = (level) => {
+const getXpDiffFromPrevLevel = (level: number) => {
   const currentXp =
     initialValue * Math.pow(growthFactor, (level + xShift) * timeConstant);
 
   return currentXp;
 };
 
-const getTotalXpForLevel = (level) => {
+const getTotalXpForLevel = (level: number) => {
   let total = 0;
 
   // We don't start using the curve until level 2.
@@ -33,7 +33,7 @@ const getTotalXpForLevel = (level) => {
   return total;
 };
 
-const getXpDiffFromPrevLevelInverse = (xp) => {
+const getXpDiffFromPrevLevelInverse = (xp: number) => {
   const currentLevel = getBaseLog(
     growthFactor,
     Math.pow(xp / initialValue, 1 / timeConstant) *
@@ -43,7 +43,7 @@ const getXpDiffFromPrevLevelInverse = (xp) => {
   return currentLevel;
 };
 
-const getLevel = (xp) => {
+const getLevel = (xp: number) => {
   for (let level = 1; level <= 99; level += 1) {
     // If we have less XP than the next level, we should
     // return the current level.
@@ -57,7 +57,7 @@ const getLevel = (xp) => {
   return 99;
 };
 
-const getPrettyLevel = (xp) => {
+const getPrettyLevel = (xp: number) => {
   const level = getLevel(xp);
 
   if (level < 1) {

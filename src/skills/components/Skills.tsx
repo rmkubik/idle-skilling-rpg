@@ -1,7 +1,8 @@
 import React from "react";
 import { getPrettyLevel } from "~/src/skills/utils/levels";
+import { SkillsList } from "~/src/skills";
 
-const Skills = ({ skills = [] }) => {
+const Skills = ({ skills }: { skills: SkillsList }) => {
   return (
     <div>
       <h2>Skills</h2>

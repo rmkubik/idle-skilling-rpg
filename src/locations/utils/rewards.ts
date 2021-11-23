@@ -1,7 +1,12 @@
-const rewardXp = (skills, location) => {
-  const rewardedSkills = Object.entries(location.action.reward.xp);
+import { Location } from "~/src/locations/data/locationsList";
+import { SkillsList, SkillKeys } from "~/src/skills";
 
-  let newSkills = { ...skills };
+const rewardXp = (skills: SkillsList, location: Location) => {
+  const rewardedSkills = location.action
+    ? Object.entries(location.action.reward.xp)
+    : [];
+
+  let newSkills: SkillsList = { ...skills };
 
   rewardedSkills.forEach(([skillKey, xp]) => {
     newSkills[skillKey].xp += xp;
@@ -10,8 +15,10 @@ const rewardXp = (skills, location) => {
   return newSkills;
 };
 
-const rewardItems = (inventory, location) => {
-  const rewardedItems = Object.entries(location.action.reward.items);
+const rewardItems = (inventory, location: Location) => {
+  const rewardedItems = location.action
+    ? Object.entries(location.action.reward.items)
+    : [];
 
   let newInventory = { ...inventory };
 
