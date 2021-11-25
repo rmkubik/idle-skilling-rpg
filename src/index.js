@@ -10,6 +10,7 @@ import {
 import { Skills, useSkills } from "~/src/skills";
 import { Inventory, itemsList, useInventory } from "~/src/items";
 import { updateArray, useTick } from "~/src/common";
+import { Crafting, isCraftingLocation } from "~/src/crafting";
 
 const App = () => {
   const { skills, setSkills } = useSkills();
@@ -28,8 +29,11 @@ const App = () => {
     const location = locations.nodes[currentLocation];
     const item = itemsList[equippedItem];
 
-    // Do equipped items allow location action to be performed?
-    if (item.action?.type === location.action?.type) {
+    if (isCraftingLocation(location, currentSubLocation)) {
+      // Crafting doesn't require a specific item, it will depend
+      // on a given recipe
+    } else if (item.action?.type === location.action?.type) {
+      // Do equipped items allow location action to be performed?
       let newCurrentHp = location.action.hp.current - item.action.damage;
 
       if (newCurrentHp <= 0) {
@@ -60,13 +64,18 @@ const App = () => {
         },
       });
     }
-  }, [locations, currentLocation, inventory, equippedItem]);
+  }, [locations, currentLocation, inventory, equippedItem, currentSubLocation]);
 
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "row",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gridGap: "1rem",
+        padding: "1rem",
+        margin: "0 auto",
+        maxWidth: "1100px",
+        fontFamily: "Helvetica Neue, Helvetica",
       }}
     >
       <Skills skills={skills} />
@@ -83,6 +92,12 @@ const App = () => {
         equippedItem={equippedItem}
         setEquippedItem={setEquippedItem}
       />
+      {isCraftingLocation(
+        locations.nodes[currentLocation],
+        currentSubLocation
+      ) ? (
+        <Crafting />
+      ) : null}
     </div>
   );
 };

@@ -24,7 +24,7 @@ const LocationListItem = ({
       }}
     >
       {`${location.name}${
-        location.action ? ` - ${location.action.hp.current}` : ""
+        location.action ? ` - ${location.action.hp?.current}` : ""
       }`}
       <ul>
         {location.subLocations

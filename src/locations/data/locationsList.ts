@@ -4,17 +4,17 @@ type Location = {
   name: string;
   action?: {
     type: string;
-    hp: {
+    hp?: {
       current: number;
       max: number;
     };
-    reward: {
+    reward?: {
       xp: {
         [SkillKeys.mining]?: number;
         [SkillKeys.woodcutting]?: number;
       };
       items: {
-        stone: number;
+        [key: string]: number;
       };
     };
   };
@@ -30,7 +30,15 @@ const locationGraph: LocationGraph = {
   nodes: {
     town: {
       name: "Town",
-      subLocations: [{ name: "Anvil" }, { name: "Crafting House" }],
+      subLocations: [
+        { name: "Anvil" },
+        {
+          name: "Crafting House",
+          action: {
+            type: "craft",
+          },
+        },
+      ],
     },
     stoneMines: {
       name: "Stone Mines",
