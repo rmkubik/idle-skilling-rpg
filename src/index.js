@@ -71,6 +71,8 @@ const App = () => {
         locations={locations}
         currentLocation={currentLocation}
         setCurrentLocation={setCurrentLocation}
+        currentSubLocation={currentSubLocation}
+        setCurrentSubLocation={setCurrentSubLocation}
       />
       <Inventory
         items={itemsList}

@@ -4,7 +4,7 @@ import { locationGraph } from "~/src/locations";
 const useLocations = () => {
   const [locations, setLocations] = useState(locationGraph);
   const [currentLocation, setCurrentLocation] = useState("town");
-  const [currentSubLocation, setcurrentSubLocation] = useState(0);
+  const [currentSubLocation, setCurrentSubLocation] = useState(0);
 
   return {
     locations,
@@ -12,7 +12,7 @@ const useLocations = () => {
     currentLocation,
     setCurrentLocation,
     currentSubLocation,
-    setcurrentSubLocation,
+    setCurrentSubLocation,
   };
 };
 

@@ -6,10 +6,14 @@ const Locations = ({
   locations,
   currentLocation,
   setCurrentLocation,
+  currentSubLocation,
+  setCurrentSubLocation,
 }: {
   locations: LocationGraph;
   currentLocation: string;
-  setCurrentLocation: (index: string) => {};
+  setCurrentLocation: (key: string) => {};
+  currentSubLocation: number;
+  setCurrentSubLocation: (index: number) => {};
 }) => {
   return (
     <div>
@@ -21,6 +25,8 @@ const Locations = ({
             location={location}
             onClick={() => setCurrentLocation(key)}
             isSelected={currentLocation === key}
+            currentSubLocation={currentSubLocation}
+            setCurrentSubLocation={setCurrentSubLocation}
           />
         ))}
       </ul>

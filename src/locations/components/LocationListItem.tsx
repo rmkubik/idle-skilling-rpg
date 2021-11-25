@@ -5,10 +5,14 @@ const LocationListItem = ({
   location,
   onClick,
   isSelected,
+  currentSubLocation,
+  setCurrentSubLocation = (index: number) => {},
 }: {
   location: Location;
-  onClick: () => {};
+  onClick: () => void;
   isSelected: boolean;
+  currentSubLocation?: number;
+  setCurrentSubLocation?: (index: number) => void;
 }) => {
   return (
     <li
@@ -23,13 +27,13 @@ const LocationListItem = ({
         location.action ? ` - ${location.action.hp.current}` : ""
       }`}
       <ul>
-        {location.locations
-          ? location.locations.map((location) => (
+        {location.subLocations
+          ? location.subLocations.map((location, index) => (
               <LocationListItem
                 key={location.name}
                 location={location}
-                onClick={onClick}
-                isSelected={isSelected}
+                onClick={() => setCurrentSubLocation(index)}
+                isSelected={isSelected && index === currentSubLocation}
               />
             ))
           : null}
