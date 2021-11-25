@@ -1,6 +1,6 @@
 import { SkillKeys } from "~/src/skills";
 
-export type Location = {
+type Location = {
   name: string;
   action?: {
     type: string;
@@ -17,20 +17,36 @@ export type Location = {
       };
     };
   };
+  subLocations?: Array<Location>;
 };
 
-const locationsList: Array<Location> = [
-  {
-    name: "Stone Mines",
-    action: {
-      type: "mine",
-      hp: { current: 10, max: 10 },
-      reward: { xp: { [SkillKeys.mining]: 4 }, items: { stone: 1 } },
-    },
-  },
-  { name: "Oak Forest" },
-  { name: "Anvil" },
-  { name: "Crafting House" },
-];
+type LocationGraph = {
+  nodes: { [key: string]: Location };
+  edges: { [key: string]: string[] };
+};
 
-export default locationsList;
+const locationGraph: LocationGraph = {
+  nodes: {
+    town: {
+      name: "Town",
+      subLocations: [{ name: "Anvil" }, { name: "Crafting House" }],
+    },
+    stoneMines: {
+      name: "Stone Mines",
+      action: {
+        type: "mine",
+        hp: { current: 10, max: 10 },
+        reward: { xp: { [SkillKeys.mining]: 4 }, items: { stone: 1 } },
+      },
+    },
+    oakForest: { name: "Oak Forest" },
+  },
+  edges: {
+    town: ["stoneMines", "oakForest"],
+    stoneMines: ["town"],
+    oakForest: ["town"],
+  },
+};
+
+export { locationGraph };
+export type { Location, LocationGraph };

@@ -13,13 +13,19 @@ import { updateArray, useTick } from "~/src/common";
 
 const App = () => {
   const { skills, setSkills } = useSkills();
-  const { locations, setLocations, currentLocation, setCurrentLocation } =
-    useLocations();
+  const {
+    locations,
+    setLocations,
+    currentLocation,
+    setCurrentLocation,
+    currentSubLocation,
+    setCurrentSubLocation,
+  } = useLocations();
   const { inventory, setInventory, equippedItem, setEquippedItem } =
     useInventory();
 
   useTick(() => {
-    const location = locations[currentLocation];
+    const location = locations.nodes[currentLocation];
     const item = itemsList[equippedItem];
 
     // Do equipped items allow location action to be performed?
@@ -37,8 +43,9 @@ const App = () => {
         setInventory(newInventory);
       }
 
-      setLocations(
-        updateArray(locations, currentLocation, {
+      setLocations({
+        ...locations,
+        [currentLocation]: {
           ...location,
           action: {
             ...location.action,
@@ -47,8 +54,8 @@ const App = () => {
               current: newCurrentHp,
             },
           },
-        })
-      );
+        },
+      });
     }
   }, [locations, currentLocation, inventory, equippedItem]);
 
