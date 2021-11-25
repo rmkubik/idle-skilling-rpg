@@ -45,13 +45,16 @@ const App = () => {
 
       setLocations({
         ...locations,
-        [currentLocation]: {
-          ...location,
-          action: {
-            ...location.action,
-            hp: {
-              ...location.action.hp,
-              current: newCurrentHp,
+        nodes: {
+          ...locations.nodes,
+          [currentLocation]: {
+            ...location,
+            action: {
+              ...location.action,
+              hp: {
+                ...location.action.hp,
+                current: newCurrentHp,
+              },
             },
           },
         },

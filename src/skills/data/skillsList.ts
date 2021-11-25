@@ -29,6 +29,10 @@ export type SkillsList = {
   [SkillKeys.crafting]: Skill;
 };
 
+// export type SkillsList = {
+//   [key: SkillKeys]: Skill;
+// };
+
 const skillsList: SkillsList = {
   [SkillKeys.mining]: { name: "Mining", level: 1, xp: 0 },
   // smithing: { name: "Smithing", level: 1, xp: 0 },

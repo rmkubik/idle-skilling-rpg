@@ -10,7 +10,8 @@ type Location = {
     };
     reward: {
       xp: {
-        [SkillKeys.mining]: number;
+        [SkillKeys.mining]?: number;
+        [SkillKeys.woodcutting]?: number;
       };
       items: {
         stone: number;
@@ -39,7 +40,14 @@ const locationGraph: LocationGraph = {
         reward: { xp: { [SkillKeys.mining]: 4 }, items: { stone: 1 } },
       },
     },
-    oakForest: { name: "Oak Forest" },
+    oakForest: {
+      name: "Oak Forest",
+      action: {
+        type: "chop",
+        hp: { current: 10, max: 10 },
+        reward: { xp: { [SkillKeys.woodcutting]: 4 }, items: { woodOak: 1 } },
+      },
+    },
   },
   edges: {
     town: ["stoneMines", "oakForest"],
