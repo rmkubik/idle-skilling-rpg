@@ -10,13 +10,13 @@ const Crafting = () => {
       <h2>Crafting</h2>
       <ul>
         {recipes.map((recipe, index) => {
-          const inputs = Object.entries(recipe.input)
-            .map(([itemKey, quantity]) => {
+          const inputs = Object.entries(recipe.input).map(
+            ([itemKey, quantity]) => {
               const itemName = itemsList[itemKey].name;
 
               return `${itemName} x${quantity}`;
-            })
-            .join(", ");
+            }
+          );
           const output = itemsList[recipe.output.item].name;
 
           return (
@@ -28,7 +28,14 @@ const Crafting = () => {
               }}
               onClick={() => setCurrentRecipe(index)}
               key={index}
-            >{`${inputs} -> ${output}`}</li>
+            >
+              {`${output} - ${recipe.hp.current}`}
+              <ul>
+                {inputs.map((input) => (
+                  <li>{input}</li>
+                ))}
+              </ul>
+            </li>
           );
         })}
       </ul>
