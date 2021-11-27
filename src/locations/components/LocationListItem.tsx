@@ -23,9 +23,7 @@ const LocationListItem = ({
         cursor: "pointer",
       }}
     >
-      {`${location.name}${
-        location.action?.hp ? ` - ${location.action.hp.current}` : ""
-      }`}
+      {location.name}
       <ul>
         {location.subLocations
           ? location.subLocations.map((location, index) => (

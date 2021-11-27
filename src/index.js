@@ -17,6 +17,8 @@ import {
   CraftingContextProvider,
 } from "~/src/crafting";
 import { Shopping, isShoppingLocation } from "~/src/shopping";
+import { Mining, isMiningLocation } from "~/src/mining";
+import { Woodcutting, isWoodcuttingLocation } from "~/src/woodcutting";
 
 const App = () => {
   const { skills, setSkills } = useSkills();
@@ -180,6 +182,18 @@ const App = () => {
         currentSubLocation
       ) ? (
         <Shopping inventory={inventory} setInventory={setInventory} />
+      ) : null}
+      {isMiningLocation(
+        locations.nodes[currentLocation],
+        currentSubLocation
+      ) ? (
+        <Mining location={locations.nodes[currentLocation]} />
+      ) : null}
+      {isWoodcuttingLocation(
+        locations.nodes[currentLocation],
+        currentSubLocation
+      ) ? (
+        <Woodcutting location={locations.nodes[currentLocation]} />
       ) : null}
     </div>
   );
