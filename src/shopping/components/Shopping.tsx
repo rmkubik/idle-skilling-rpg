@@ -12,40 +12,53 @@ const Shopping = ({
     <div>
       <h2>Shopping</h2>
       <ul>
-        {Object.entries(inventory).map(([itemKey, quantity]) => {
-          return (
-            <li key={itemKey}>
-              {`${itemsList[itemKey].name} x${quantity}`}
-              <button
-                onClick={() => {
-                  const newInventory = { ...inventory };
+        {Object.entries(inventory)
+          .filter(([itemKey, quantity]) => {
+            if (
+              (itemKey === "stonePickAxe" && quantity === 1) ||
+              (itemKey === "stoneAxe" && quantity === 1)
+            ) {
+              // You cannot sell your last stonePickaxe or stoneAxe
+              // Eventually, we should be smarter about this
+              return;
+            }
 
-                  newInventory[itemKey] -= 1;
+            return itemsList[itemKey].prices !== undefined;
+          })
+          .map(([itemKey, quantity]) => {
+            const item = itemsList[itemKey];
 
-                  if (newInventory[itemKey] === 0) {
-                    delete newInventory[itemKey];
-                  }
+            return (
+              <li key={itemKey}>
+                {`${item.name} x${quantity}`}
+                <button
+                  onClick={() => {
+                    if (item.prices === undefined) {
+                      return;
+                    }
 
-                  if (!newInventory.stonePickAxe || !newInventory.stoneAxe) {
-                    // You cannot sell your last stonePickaxe or stoneAxe
-                    // Eventually, we should be smarter about this
-                    return;
-                  }
+                    const newInventory = { ...inventory };
 
-                  if (!newInventory["goldPiece"]) {
-                    newInventory["goldPiece"] = 0;
-                  }
+                    newInventory[itemKey] -= 1;
 
-                  newInventory["goldPiece"] += 1;
+                    if (newInventory[itemKey] === 0) {
+                      delete newInventory[itemKey];
+                    }
 
-                  setInventory(newInventory);
-                }}
-              >
-                Sell x1
-              </button>
-            </li>
-          );
-        })}
+                    if (!newInventory["goldPiece"]) {
+                      newInventory["goldPiece"] = 0;
+                    }
+
+                    newInventory["goldPiece"] += item.prices.sell;
+
+                    setInventory(newInventory);
+                  }}
+                >
+                  Sell x1
+                </button>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
