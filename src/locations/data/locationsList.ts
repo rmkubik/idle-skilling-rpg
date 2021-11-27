@@ -31,7 +31,7 @@ const locationGraph: LocationGraph = {
     town: {
       name: "Town",
       subLocations: [
-        { name: "Anvil" },
+        { name: "Marketplace", action: { type: "shop" } },
         {
           name: "Crafting House",
           action: {

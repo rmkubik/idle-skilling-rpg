@@ -16,6 +16,7 @@ import {
   useCrafting,
   CraftingContextProvider,
 } from "~/src/crafting";
+import { Shopping, isShoppingLocation } from "~/src/shopping";
 
 const App = () => {
   const { skills, setSkills } = useSkills();
@@ -173,6 +174,12 @@ const App = () => {
         currentSubLocation
       ) ? (
         <Crafting />
+      ) : null}
+      {isShoppingLocation(
+        locations.nodes[currentLocation],
+        currentSubLocation
+      ) ? (
+        <Shopping inventory={inventory} setInventory={setInventory} />
       ) : null}
     </div>
   );

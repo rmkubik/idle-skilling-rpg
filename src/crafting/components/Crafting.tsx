@@ -32,7 +32,7 @@ const Crafting = () => {
               {`${output} - ${recipe.hp.current}`}
               <ul>
                 {inputs.map((input) => (
-                  <li>{input}</li>
+                  <li key={input}>{input}</li>
                 ))}
               </ul>
             </li>
