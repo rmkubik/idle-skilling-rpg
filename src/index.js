@@ -7,7 +7,13 @@ import {
   rewardXp,
   rewardItems,
 } from "~/src/locations";
-import { Skills, useSkills, SkillKeys } from "~/src/skills";
+import {
+  Skills,
+  useSkills,
+  SkillKeys,
+  SkillInfo,
+  SkillsContextProvider,
+} from "~/src/skills";
 import { Inventory, itemsList, useInventory } from "~/src/items";
 import { updateArray, useTick } from "~/src/common";
 import {
@@ -21,7 +27,7 @@ import { Mining, isMiningLocation } from "~/src/mining";
 import { Woodcutting, isWoodcuttingLocation } from "~/src/woodcutting";
 
 const App = () => {
-  const { skills, setSkills } = useSkills();
+  const { skills, setSkills, selectedSkill } = useSkills();
   const {
     locations,
     setLocations,
@@ -171,6 +177,7 @@ const App = () => {
         equippedItem={equippedItem}
         setEquippedItem={setEquippedItem}
       />
+      <SkillInfo />
       {isCraftingLocation(
         locations.nodes[currentLocation],
         currentSubLocation
@@ -201,9 +208,11 @@ const App = () => {
 
 const AppWithProviders = () => {
   return (
-    <CraftingContextProvider>
-      <App />
-    </CraftingContextProvider>
+    <SkillsContextProvider>
+      <CraftingContextProvider>
+        <App />
+      </CraftingContextProvider>
+    </SkillsContextProvider>
   );
 };
 
