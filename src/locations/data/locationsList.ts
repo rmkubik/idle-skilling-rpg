@@ -33,7 +33,7 @@ const locationGraph: LocationGraph = {
       subLocations: [
         { name: "Marketplace", action: { type: "shop" } },
         {
-          name: "Crafting House",
+          name: "Workshop",
           action: {
             type: "craft",
           },
@@ -46,6 +46,14 @@ const locationGraph: LocationGraph = {
         type: "mine",
         hp: { current: 10, max: 10 },
         reward: { xp: { [SkillKeys.mining]: 4 }, items: { stone: 1 } },
+      },
+    },
+    copperMines: {
+      name: "Copper Mines",
+      action: {
+        type: "mine",
+        hp: { current: 15, max: 15 },
+        reward: { xp: { [SkillKeys.mining]: 6 }, items: { copperOre: 1 } },
       },
     },
     oakForest: {

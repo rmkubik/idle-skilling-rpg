@@ -49,6 +49,53 @@ const recipeList: Recipe[] = [
       woodOak: 3,
     },
   },
+  {
+    output: {
+      item: "copperIngot",
+      xp: {
+        [SkillKeys.crafting]: 6,
+      },
+    },
+    hp: {
+      current: 5,
+      max: 5,
+    },
+    input: {
+      copperOre: 1,
+    },
+  },
+  {
+    output: {
+      item: "copperPickAxe",
+      xp: {
+        [SkillKeys.crafting]: 25,
+      },
+    },
+    hp: {
+      current: 15,
+      max: 15,
+    },
+    input: {
+      copperIngot: 3,
+      woodOak: 2,
+    },
+  },
+  {
+    output: {
+      item: "copperAxe",
+      xp: {
+        [SkillKeys.crafting]: 25,
+      },
+    },
+    hp: {
+      current: 15,
+      max: 15,
+    },
+    input: {
+      copperIngot: 2,
+      woodOak: 3,
+    },
+  },
 ];
 
 export default recipeList;
