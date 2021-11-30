@@ -6,6 +6,7 @@ import skillsList, {
   SkillKeys,
 } from "~/src/skills/data/skillsList";
 import useSkills, { SkillsContextProvider } from "~/src/skills/hooks/useSkills";
+import { getTotalXpForLevel } from "./utils/levels";
 
 export type { Skill, SkillsList };
 export {
@@ -15,4 +16,5 @@ export {
   SkillKeys,
   SkillInfo,
   SkillsContextProvider,
+  getTotalXpForLevel,
 };

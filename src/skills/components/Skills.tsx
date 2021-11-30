@@ -1,6 +1,11 @@
 import React from "react";
 import { getPrettyLevel } from "~/src/skills/utils/levels";
-import { SkillKeys, SkillsList, useSkills } from "~/src/skills";
+import {
+  SkillKeys,
+  SkillsList,
+  useSkills,
+  getTotalXpForLevel,
+} from "~/src/skills";
 
 type Entries<T> = {
   [K in keyof T]: [K, T[K]];
@@ -18,6 +23,8 @@ const Skills = ({ skills }: { skills: SkillsList }) => {
       <h2>Skills</h2>
       <ul>
         {depictEntriesKeyType<SkillsList>(skills).map(([skillKey, skill]) => {
+          const level = getPrettyLevel(skill.xp);
+
           return (
             <li
               onClick={() => setSelectedSkill(skillKey)}
@@ -28,9 +35,9 @@ const Skills = ({ skills }: { skills: SkillsList }) => {
               }}
               key={skillKey}
             >
-              {`${skill.name} - ${getPrettyLevel(skill.xp)} / 99`}
+              {`${skill.name} - ${level} / 99`}
               <br />
-              {`${skill.xp} xp`}
+              {`${skill.xp} / ${getTotalXpForLevel(level + 1)} xp`}
             </li>
           );
         })}

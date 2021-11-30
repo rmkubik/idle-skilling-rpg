@@ -1,5 +1,10 @@
 import React from "react";
-import { SkillKeys, skillsList, useSkills } from "~/src/skills";
+import {
+  SkillKeys,
+  skillsList,
+  useSkills,
+  getTotalXpForLevel,
+} from "~/src/skills";
 
 const SkillInfo = () => {
   const { selectedSkill } = useSkills();

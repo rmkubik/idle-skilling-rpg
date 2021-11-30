@@ -67,4 +67,4 @@ const getPrettyLevel = (xp: number) => {
   return Math.floor(level);
 };
 
-export { getPrettyLevel };
+export { getPrettyLevel, getTotalXpForLevel };
