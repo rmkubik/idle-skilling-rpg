@@ -24,6 +24,8 @@ const Skills = ({ skills }: { skills: SkillsList }) => {
       <ul>
         {depictEntriesKeyType<SkillsList>(skills).map(([skillKey, skill]) => {
           const level = getPrettyLevel(skill.xp);
+          const rawXp = getTotalXpForLevel(level + 1);
+          const prettyXp = Math.ceil(rawXp);
 
           return (
             <li
@@ -37,7 +39,7 @@ const Skills = ({ skills }: { skills: SkillsList }) => {
             >
               {`${skill.name} - ${level} / 99`}
               <br />
-              {`${skill.xp} / ${getTotalXpForLevel(level + 1)} xp`}
+              {`${skill.xp} / ${prettyXp} xp`}
             </li>
           );
         })}
