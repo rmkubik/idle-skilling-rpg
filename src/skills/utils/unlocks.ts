@@ -8,7 +8,13 @@ function getUnlockedKeys(skillKey: SkillKeys, level: number): string[] {
     .map((unlock) => unlock.key);
 }
 
+const specialActionKeys = ["shopGeneral", "craftGeneral"];
+
 function isActionUnlocked(actionKey: string) {
+  if (specialActionKeys.some((key) => key === actionKey)) {
+    return true;
+  }
+
   return depictEntriesKeyType<SkillsList>(skillsList).some(
     ([skillKey, skill]) => {
       return skill.unlocks

@@ -18,12 +18,7 @@ import {
 } from "~/src/skills";
 import { Inventory, itemsList, useInventory } from "~/src/items";
 import { updateArray, useTick } from "~/src/common";
-import {
-  Crafting,
-  isCraftingLocation,
-  useCrafting,
-  CraftingContextProvider,
-} from "~/src/crafting";
+import { Crafting, useCrafting, CraftingContextProvider } from "~/src/crafting";
 import { Shopping, isShoppingLocation } from "~/src/shopping";
 import { Mining, isMiningLocation } from "~/src/mining";
 import { Woodcutting, isWoodcuttingLocation } from "~/src/woodcutting";
@@ -57,7 +52,7 @@ const App = () => {
       return;
     }
 
-    if (isCraftingLocation(location, currentSubLocation)) {
+    if (action.type === "craft") {
       // Crafting doesn't require a specific item, it will depend
       // on a given recipe
       const recipe = recipes[currentRecipe];
@@ -162,6 +157,11 @@ const App = () => {
     currentRecipe,
   ]);
 
+  const action = getAction(
+    locations.nodes[currentLocation],
+    currentSubLocation
+  );
+
   return (
     <div
       style={{
@@ -189,12 +189,7 @@ const App = () => {
         setEquippedItem={setEquippedItem}
       />
       <SkillInfo />
-      {isCraftingLocation(
-        locations.nodes[currentLocation],
-        currentSubLocation
-      ) ? (
-        <Crafting />
-      ) : null}
+      {action?.type === "craft" ? <Crafting /> : null}
       {isShoppingLocation(
         locations.nodes[currentLocation],
         currentSubLocation
