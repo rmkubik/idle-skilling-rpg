@@ -6,14 +6,7 @@ import {
   useSkills,
   getTotalXpForLevel,
 } from "~/src/skills";
-
-type Entries<T> = {
-  [K in keyof T]: [K, T[K]];
-}[keyof T][];
-
-function depictEntriesKeyType<T>(obj: T): Entries<T> {
-  return Object.entries(obj) as any;
-}
+import { depictEntriesKeyType } from "~src/common";
 
 const Skills = ({ skills }: { skills: SkillsList }) => {
   const { selectedSkill, setSelectedSkill } = useSkills();

@@ -7,6 +7,7 @@ import {
 } from "~/src/locations/data/locationsList";
 import useLocations from "~/src/locations/hooks/useLocations";
 import { rewardXp, rewardItems } from "~/src/locations/utils/rewards";
+import getAction from "./utils/getAction";
 
 export {
   Locations,
@@ -15,5 +16,6 @@ export {
   rewardXp,
   rewardItems,
   LocationListItem,
+  getAction,
 };
 export type { Location, LocationGraph };

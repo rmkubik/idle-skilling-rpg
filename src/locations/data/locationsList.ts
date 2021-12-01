@@ -1,23 +1,8 @@
-import { SkillKeys } from "~/src/skills";
+import { actionsList, Action } from "~/src/skills";
 
 type Location = {
   name: string;
-  action?: {
-    type: string;
-    hp?: {
-      current: number;
-      max: number;
-    };
-    reward?: {
-      xp: {
-        [SkillKeys.mining]?: number;
-        [SkillKeys.woodcutting]?: number;
-      };
-      items: {
-        [key: string]: number;
-      };
-    };
-  };
+  action?: Action;
   subLocations?: Array<Location>;
 };
 
@@ -31,38 +16,24 @@ const locationGraph: LocationGraph = {
     town: {
       name: "Town",
       subLocations: [
-        { name: "Marketplace", action: { type: "shop" } },
+        { name: "Marketplace", action: actionsList.shopGeneral },
         {
           name: "Workshop",
-          action: {
-            type: "craft",
-          },
+          action: actionsList.craftGeneral,
         },
       ],
     },
     stoneMines: {
       name: "Stone Mines",
-      action: {
-        type: "mine",
-        hp: { current: 10, max: 10 },
-        reward: { xp: { [SkillKeys.mining]: 4 }, items: { stone: 1 } },
-      },
+      action: actionsList.mineStone,
     },
     copperMines: {
       name: "Copper Mines",
-      action: {
-        type: "mine",
-        hp: { current: 15, max: 15 },
-        reward: { xp: { [SkillKeys.mining]: 6 }, items: { copperOre: 1 } },
-      },
+      action: actionsList.mineCopper,
     },
     oakForest: {
       name: "Oak Forest",
-      action: {
-        type: "chop",
-        hp: { current: 10, max: 10 },
-        reward: { xp: { [SkillKeys.woodcutting]: 4 }, items: { woodOak: 1 } },
-      },
+      action: actionsList.chopOak,
     },
   },
   edges: {

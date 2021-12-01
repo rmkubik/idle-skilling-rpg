@@ -6,6 +6,7 @@ import {
   useLocations,
   rewardXp,
   rewardItems,
+  getAction,
 } from "~/src/locations";
 import {
   Skills,
@@ -13,6 +14,7 @@ import {
   SkillKeys,
   SkillInfo,
   SkillsContextProvider,
+  isActionUnlocked,
 } from "~/src/skills";
 import { Inventory, itemsList, useInventory } from "~/src/items";
 import { updateArray, useTick } from "~/src/common";
@@ -44,13 +46,22 @@ const App = () => {
     const location = locations.nodes[currentLocation];
     const item = itemsList[equippedItem];
 
+    const action = getAction(location, currentSubLocation);
+
+    if (!action) {
+      return;
+    }
+
+    if (!isActionUnlocked(action.key)) {
+      console.log(`action ${action.key} is not unlocked`);
+      return;
+    }
+
     if (isCraftingLocation(location, currentSubLocation)) {
       // Crafting doesn't require a specific item, it will depend
       // on a given recipe
       const recipe = recipes[currentRecipe];
 
-      // TODO: We need to verify that all inputs are met
-      // in a recipe before we can proceed.
       const inputEntries = Object.entries(recipe.input);
       const areAllInputQuantitiesMet = inputEntries.every(
         ([itemKey, quantity]) => inventory[itemKey] >= quantity

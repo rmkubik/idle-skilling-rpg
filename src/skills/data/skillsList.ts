@@ -20,6 +20,7 @@ export enum SkillKeys {
 export type SkillUnlock = {
   value: number;
   name: string;
+  key: string;
 };
 
 export type Skill = {
@@ -48,42 +49,52 @@ const skillsList: SkillsList = {
       {
         value: 1,
         name: "Use Stone Tools",
+        key: "useStone",
       },
       {
         value: 1,
         name: "Mine Stone",
+        key: "mineStone",
       },
       {
         value: 2,
         name: "Use Copper Tools",
+        key: "useCopper",
       },
       {
         value: 2,
         name: "Mine Copper Ore",
+        key: "mineCopper",
       },
       {
         value: 2,
         name: "Mine Tin Ore",
+        key: "mineTin",
       },
       {
         value: 5,
         name: "Use Bronze Tools",
+        key: "useBronze",
       },
       {
         value: 10,
         name: "Use Iron Tools",
+        key: "useIron",
       },
       {
         value: 10,
         name: "Mine Iron Ore",
+        key: "mineIron",
       },
       {
         value: 15,
         name: "Mine Coal Ore",
+        key: "mineCoal",
       },
       {
         value: 20,
         name: "Use Steel Tools",
+        key: "useSteel",
       },
     ],
   },
@@ -96,26 +107,32 @@ const skillsList: SkillsList = {
       {
         value: 1,
         name: "Use Stone Tools",
+        key: "useStone",
       },
       {
         value: 1,
         name: "Chop Oak Logs",
+        key: "chopOak",
       },
       {
         value: 2,
         name: "Use Copper Tools",
+        key: "useCopper",
       },
       {
         value: 5,
         name: "Use Bronze Tools",
+        key: "useBronze",
       },
       {
         value: 10,
         name: "Use Iron Tools",
+        key: "useIron",
       },
       {
         value: 20,
         name: "Use Steel Tools",
+        key: "useSteel",
       },
     ],
   },
@@ -127,22 +144,27 @@ const skillsList: SkillsList = {
       {
         value: 1,
         name: "Craft Stone Tools",
+        key: "craftStone",
       },
       {
         value: 2,
         name: "Craft Copper Tools",
+        key: "craftCopper",
       },
       {
         value: 5,
         name: "Craft Bronze Tools",
+        key: "craftBronze",
       },
       {
         value: 10,
         name: "Craft Iron Tools",
+        key: "craftIron",
       },
       {
         value: 20,
         name: "Craft Steel Tools",
+        key: "craftSteel",
       },
     ],
   },
