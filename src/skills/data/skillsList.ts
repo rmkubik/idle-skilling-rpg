@@ -49,7 +49,7 @@ const skillsList: SkillsList = {
       {
         value: 1,
         name: "Use Stone Tools",
-        key: "useStone",
+        key: "useStonePick",
       },
       {
         value: 1,
@@ -59,7 +59,7 @@ const skillsList: SkillsList = {
       {
         value: 2,
         name: "Use Copper Tools",
-        key: "useCopper",
+        key: "useCopperPick",
       },
       {
         value: 2,
@@ -74,12 +74,12 @@ const skillsList: SkillsList = {
       {
         value: 5,
         name: "Use Bronze Tools",
-        key: "useBronze",
+        key: "useBronzePick",
       },
       {
         value: 10,
         name: "Use Iron Tools",
-        key: "useIron",
+        key: "useIronPick",
       },
       {
         value: 10,
@@ -94,7 +94,7 @@ const skillsList: SkillsList = {
       {
         value: 20,
         name: "Use Steel Tools",
-        key: "useSteel",
+        key: "useSteelPick",
       },
     ],
   },
@@ -107,7 +107,7 @@ const skillsList: SkillsList = {
       {
         value: 1,
         name: "Use Stone Tools",
-        key: "useStone",
+        key: "useStoneAxe",
       },
       {
         value: 1,
@@ -117,22 +117,22 @@ const skillsList: SkillsList = {
       {
         value: 2,
         name: "Use Copper Tools",
-        key: "useCopper",
+        key: "useCopperAxe",
       },
       {
         value: 5,
         name: "Use Bronze Tools",
-        key: "useBronze",
+        key: "useBronzeAxe",
       },
       {
         value: 10,
         name: "Use Iron Tools",
-        key: "useIron",
+        key: "useIronAxe",
       },
       {
         value: 20,
         name: "Use Steel Tools",
-        key: "useSteel",
+        key: "useSteelAxe",
       },
     ],
   },

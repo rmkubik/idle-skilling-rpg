@@ -1,6 +1,7 @@
 import { SkillKeys } from "~src/skills";
 
 type Recipe = {
+  unlockKey: string;
   output: {
     item: string;
     xp: {
@@ -18,6 +19,7 @@ type Recipe = {
 
 const recipeList: Recipe[] = [
   {
+    unlockKey: "craftStone",
     output: {
       item: "stonePickAxe",
       xp: {
@@ -34,6 +36,7 @@ const recipeList: Recipe[] = [
     },
   },
   {
+    unlockKey: "craftStone",
     output: {
       item: "stoneAxe",
       xp: {
@@ -50,6 +53,7 @@ const recipeList: Recipe[] = [
     },
   },
   {
+    unlockKey: "craftCopper",
     output: {
       item: "copperIngot",
       xp: {
@@ -65,6 +69,7 @@ const recipeList: Recipe[] = [
     },
   },
   {
+    unlockKey: "craftCopper",
     output: {
       item: "copperPickAxe",
       xp: {
@@ -81,6 +86,7 @@ const recipeList: Recipe[] = [
     },
   },
   {
+    unlockKey: "craftCopper",
     output: {
       item: "copperAxe",
       xp: {

@@ -5,13 +5,14 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { SkillKeys, SkillsList, skillsList } from "~/src/skills";
+import { isKeyUnlocked, SkillKeys, SkillsList, skillsList } from "~/src/skills";
 
 type SkillsContextType = {
   skills: SkillsList;
   setSkills: Dispatch<SetStateAction<SkillsList>>;
   selectedSkill: SkillKeys | undefined;
   setSelectedSkill: Dispatch<SetStateAction<SkillKeys | undefined>>;
+  isKeyUnlocked: (key: string) => boolean;
 };
 
 const SkillsContext = createContext<SkillsContextType>({
@@ -19,15 +20,26 @@ const SkillsContext = createContext<SkillsContextType>({
   setSkills: () => {},
   selectedSkill: undefined,
   setSelectedSkill: () => {},
+  isKeyUnlocked: () => false,
 });
 
 const SkillsContextProvider = ({ children }: { children: any }) => {
   const [skills, setSkills] = useState(skillsList);
   const [selectedSkill, setSelectedSkill] = useState<SkillKeys | undefined>();
 
+  const isKeyUnlockedWrapper = (key: string) => {
+    return isKeyUnlocked(skills, key);
+  };
+
   return (
     <SkillsContext.Provider
-      value={{ skills, setSkills, selectedSkill, setSelectedSkill }}
+      value={{
+        skills,
+        setSkills,
+        selectedSkill,
+        setSelectedSkill,
+        isKeyUnlocked: isKeyUnlockedWrapper,
+      }}
     >
       {children}
     </SkillsContext.Provider>

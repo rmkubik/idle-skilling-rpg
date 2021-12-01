@@ -7,7 +7,7 @@ import skillsList, {
 } from "~/src/skills/data/skillsList";
 import useSkills, { SkillsContextProvider } from "~/src/skills/hooks/useSkills";
 import { getTotalXpForLevel } from "./utils/levels";
-import { getUnlockedKeys, isActionUnlocked } from "./utils/unlocks";
+import { isKeyUnlocked } from "./utils/unlocks";
 import actionsList, { Action } from "./data/actionsList";
 
 export type { Skill, SkillsList, Action };
@@ -20,6 +20,5 @@ export {
   SkillInfo,
   SkillsContextProvider,
   getTotalXpForLevel,
-  getUnlockedKeys,
-  isActionUnlocked,
+  isKeyUnlocked,
 };

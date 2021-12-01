@@ -14,7 +14,6 @@ import {
   SkillKeys,
   SkillInfo,
   SkillsContextProvider,
-  isActionUnlocked,
 } from "~/src/skills";
 import { Inventory, itemsList, useInventory } from "~/src/items";
 import { updateArray, useTick } from "~/src/common";
@@ -24,7 +23,7 @@ import { Mining, isMiningLocation } from "~/src/mining";
 import { Woodcutting, isWoodcuttingLocation } from "~/src/woodcutting";
 
 const App = () => {
-  const { skills, setSkills, selectedSkill } = useSkills();
+  const { skills, setSkills, isKeyUnlocked } = useSkills();
   const {
     locations,
     setLocations,
@@ -47,7 +46,7 @@ const App = () => {
       return;
     }
 
-    if (!isActionUnlocked(action.key)) {
+    if (!isKeyUnlocked(action.key)) {
       console.log(`action ${action.key} is not unlocked`);
       return;
     }
@@ -56,6 +55,11 @@ const App = () => {
       // Crafting doesn't require a specific item, it will depend
       // on a given recipe
       const recipe = recipes[currentRecipe];
+
+      if (!isKeyUnlocked(recipe.unlockKey)) {
+        console.log("recipe isn't unlocked: ", recipe);
+        return;
+      }
 
       const inputEntries = Object.entries(recipe.input);
       const areAllInputQuantitiesMet = inputEntries.every(
@@ -115,38 +119,50 @@ const App = () => {
           },
         })
       );
-    } else if (item.action?.type === location.action?.type) {
-      // Do equipped items allow location action to be performed?
-      let newCurrentHp = location.action.hp.current - item.action.damage;
+      return;
+    }
 
-      if (newCurrentHp <= 0) {
-        // We finished performing this action!
-        newCurrentHp = location.action.hp.max;
+    // Do equipped items allow location action to be performed?
+    if (item.action?.type !== action.type) {
+      console.log(`equipped item cannot perform action ${action.type}`);
+      return;
+    }
 
-        const newSkills = rewardXp(skills, location);
-        setSkills(newSkills);
+    // Have we unlocked equipped item?
+    if (!isKeyUnlocked(item.unlockKey)) {
+      console.log(`equipped item is not unlocked ${item.unlockKey}`);
+      return;
+    }
 
-        const newInventory = rewardItems(inventory, location);
-        setInventory(newInventory);
-      }
+    let newCurrentHp = location.action.hp.current - item.action.damage;
 
-      setLocations({
-        ...locations,
-        nodes: {
-          ...locations.nodes,
-          [currentLocation]: {
-            ...location,
-            action: {
-              ...location.action,
-              hp: {
-                ...location.action.hp,
-                current: newCurrentHp,
-              },
+    if (newCurrentHp <= 0) {
+      // We finished performing this action!
+      newCurrentHp = location.action.hp.max;
+
+      const newSkills = rewardXp(skills, location);
+      setSkills(newSkills);
+
+      const newInventory = rewardItems(inventory, location);
+      setInventory(newInventory);
+    }
+
+    setLocations({
+      ...locations,
+      nodes: {
+        ...locations.nodes,
+        [currentLocation]: {
+          ...location,
+          action: {
+            ...location.action,
+            hp: {
+              ...location.action.hp,
+              current: newCurrentHp,
             },
           },
         },
-      });
-    }
+      },
+    });
   }, [
     locations,
     currentLocation,
