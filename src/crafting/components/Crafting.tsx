@@ -8,7 +8,12 @@ const Crafting = () => {
   return (
     <div>
       <h2>Crafting</h2>
-      <ul>
+      <ul
+        style={{
+          maxHeight: "40vh",
+          overflowY: "scroll",
+        }}
+      >
         {recipes.map((recipe, index) => {
           const inputs = Object.entries(recipe.input).map(
             ([itemKey, quantity]) => {

@@ -1,7 +1,25 @@
-import React, { createContext, useContext, useState } from "react";
-import { recipeList } from "..";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
+import { recipeList, Recipe } from "..";
 
-const CraftingContext = createContext({});
+type CraftingContextType = {
+  recipes: Recipe[];
+  setRecipes: Dispatch<SetStateAction<Recipe[]>>;
+  currentRecipe: number;
+  setCurrentRecipe: Dispatch<SetStateAction<number>>;
+};
+
+const CraftingContext = createContext<CraftingContextType>({
+  recipes: [],
+  setRecipes: () => {},
+  currentRecipe: 0,
+  setCurrentRecipe: () => {},
+});
 
 const CraftingContextProvider = ({ children }: { children: any }) => {
   const [recipes, setRecipes] = useState(recipeList);
