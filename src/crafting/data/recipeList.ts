@@ -102,6 +102,158 @@ const recipeList: Recipe[] = [
       woodOak: 3,
     },
   },
+  {
+    unlockKey: "craftBronze",
+    output: {
+      item: "bronzeIngot",
+      xp: {
+        [SkillKeys.crafting]: 8,
+      },
+    },
+    hp: {
+      current: 6,
+      max: 6,
+    },
+    input: {
+      copperOre: 1,
+      tinOre: 1,
+    },
+  },
+  {
+    unlockKey: "craftBronze",
+    output: {
+      item: "bronzePickAxe",
+      xp: {
+        [SkillKeys.crafting]: 42,
+      },
+    },
+    hp: {
+      current: 17,
+      max: 17,
+    },
+    input: {
+      bronzeIngot: 3,
+      woodOak: 2,
+    },
+  },
+  {
+    unlockKey: "craftBronze",
+    output: {
+      item: "bronzeAxe",
+      xp: {
+        [SkillKeys.crafting]: 42,
+      },
+    },
+    hp: {
+      current: 17,
+      max: 17,
+    },
+    input: {
+      bronzeIngot: 2,
+      woodOak: 3,
+    },
+  },
+  {
+    unlockKey: "craftIron",
+    output: {
+      item: "ironIngot",
+      xp: {
+        [SkillKeys.crafting]: 10,
+      },
+    },
+    hp: {
+      current: 6,
+      max: 6,
+    },
+    input: {
+      ironOre: 1,
+    },
+  },
+  {
+    unlockKey: "craftIron",
+    output: {
+      item: "ironPickAxe",
+      xp: {
+        [SkillKeys.crafting]: 64,
+      },
+    },
+    hp: {
+      current: 20,
+      max: 20,
+    },
+    input: {
+      ironIngot: 3,
+      woodOak: 2,
+    },
+  },
+  {
+    unlockKey: "craftIron",
+    output: {
+      item: "ironAxe",
+      xp: {
+        [SkillKeys.crafting]: 64,
+      },
+    },
+    hp: {
+      current: 20,
+      max: 20,
+    },
+    input: {
+      ironIngot: 2,
+      woodOak: 3,
+    },
+  },
+  {
+    unlockKey: "craftSteel",
+    output: {
+      item: "steelIngot",
+      xp: {
+        [SkillKeys.crafting]: 14,
+      },
+    },
+    hp: {
+      current: 10,
+      max: 10,
+    },
+    input: {
+      ironOre: 1,
+      coal: 2,
+    },
+  },
+  {
+    unlockKey: "craftSteel",
+    output: {
+      item: "steelPickAxe",
+      xp: {
+        [SkillKeys.crafting]: 89,
+      },
+    },
+    hp: {
+      current: 26,
+      max: 26,
+    },
+    input: {
+      steelIngot: 3,
+      woodOak: 2,
+    },
+  },
+  {
+    unlockKey: "craftSteel",
+    output: {
+      item: "steelAxe",
+      xp: {
+        [SkillKeys.crafting]: 89,
+      },
+    },
+    hp: {
+      current: 26,
+      max: 26,
+    },
+    input: {
+      steelIngot: 2,
+      woodOak: 3,
+    },
+  },
 ];
 
 export default recipeList;

@@ -35,11 +35,26 @@ const locationGraph: LocationGraph = {
       name: "Oak Forest",
       action: actionsList.chopOak,
     },
+    tinMines: {
+      name: "Tin Mines",
+      action: actionsList.mineTin,
+    },
+    ironMines: {
+      name: "Iron Mines",
+      action: actionsList.mineIron,
+    },
+    coalMines: {
+      name: "Coal Mines",
+      action: actionsList.mineCoal,
+    },
   },
   edges: {
     town: ["stoneMines", "oakForest"],
     stoneMines: ["town"],
     oakForest: ["town"],
+    tinMines: ["town"],
+    ironMines: ["town"],
+    coalMines: ["town"],
   },
 };
 

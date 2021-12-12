@@ -60,6 +60,24 @@ const actionsList: { [key: string]: Action } = {
     hp: { current: 10, max: 10 },
     reward: { xp: { [SkillKeys.woodcutting]: 4 }, items: { woodOak: 1 } },
   },
+  mineTin: {
+    key: "mineTin",
+    type: "mine",
+    hp: { current: 15, max: 15 },
+    reward: { xp: { [SkillKeys.mining]: 8 }, items: { tinOre: 1 } },
+  },
+  mineIron: {
+    key: "mineIron",
+    type: "mine",
+    hp: { current: 17, max: 17 },
+    reward: { xp: { [SkillKeys.mining]: 10 }, items: { ironOre: 1 } },
+  },
+  mineCoal: {
+    key: "mineCoal",
+    type: "mine",
+    hp: { current: 20, max: 20 },
+    reward: { xp: { [SkillKeys.mining]: 15 }, items: { coal: 1 } },
+  },
 };
 
 export default actionsList;
