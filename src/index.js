@@ -15,7 +15,7 @@ import {
   SkillInfo,
   SkillsContextProvider,
 } from "~/src/skills";
-import { Inventory, itemsList, useInventory } from "~/src/items";
+import { Inventory, itemsList, useInventory, Equipment } from "~/src/items";
 import { updateArray, useTick } from "~/src/common";
 import { Crafting, useCrafting, CraftingContextProvider } from "~/src/crafting";
 import { Shopping, isShoppingLocation } from "~/src/shopping";
@@ -32,8 +32,14 @@ const App = () => {
     currentSubLocation,
     setCurrentSubLocation,
   } = useLocations();
-  const { inventory, setInventory, equippedItem, setEquippedItem } =
-    useInventory();
+  const {
+    inventory,
+    setInventory,
+    equippedItem,
+    setEquippedItem,
+    equippedItems,
+    setEquippedItems,
+  } = useInventory();
   const { recipes, setRecipes, currentRecipe } = useCrafting();
 
   useTick(() => {
@@ -203,7 +209,10 @@ const App = () => {
         inventory={inventory}
         equippedItem={equippedItem}
         setEquippedItem={setEquippedItem}
+        equippedItems={equippedItems}
+        setEquippedItems={setEquippedItems}
       />
+      <Equipment />
       <SkillInfo />
       {action?.type === "craft" ? <Crafting /> : null}
       {isShoppingLocation(

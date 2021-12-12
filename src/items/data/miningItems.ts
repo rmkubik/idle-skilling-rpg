@@ -1,3 +1,4 @@
+import { EquipmentSlot } from "./equipment";
 import { Item } from "./itemsList";
 
 const miningItems: { [key: string]: Item } = {
@@ -6,6 +7,7 @@ const miningItems: { [key: string]: Item } = {
     action: { type: "mine", damage: 1 },
     prices: { sell: 6 },
     unlockKey: "useStonePick",
+    equipmentSlot: EquipmentSlot.mainHand,
   },
   copperPickAxe: {
     name: "Copper Pickaxe",

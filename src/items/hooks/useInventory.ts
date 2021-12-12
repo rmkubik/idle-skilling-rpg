@@ -3,13 +3,18 @@ import { initialInventory } from "~/src/items";
 
 const useInventory = () => {
   const [inventory, setInventory] = useState(initialInventory);
-  const [equippedItem, setEquippedItem] = useState("stonePickAxe");
+  const [equippedItems, setEquippedItems] = useState(["stonePickAxe"]);
+
+  const [equippedItem] = equippedItems;
+  const setEquippedItem = (itemKey: string) => setEquippedItems([itemKey]);
 
   return {
     inventory,
     setInventory,
     equippedItem,
     setEquippedItem,
+    equippedItems,
+    setEquippedItems,
   };
 };
 

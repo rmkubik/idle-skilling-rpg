@@ -1,4 +1,4 @@
-const initialInventory = {
+const initialInventory: { [key: string]: number } = {
   stonePickAxe: 1,
   stoneAxe: 1,
   stone: 100,

@@ -1,5 +1,6 @@
 import miningItems from "./miningItems";
 import woodcuttingItems from "./woodcuttingItems";
+import { EquipmentSlot } from "./equipment";
 
 type Item = {
   name: string;
@@ -11,6 +12,7 @@ type Item = {
     sell: number;
   };
   unlockKey?: string;
+  equipmentSlot?: EquipmentSlot;
 };
 
 const itemsList: { [key: string]: Item } = {
