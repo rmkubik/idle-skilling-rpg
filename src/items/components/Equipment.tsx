@@ -1,6 +1,6 @@
 import React from "react";
 
-const Equipment = () => {
+const Equipment = ({ equippedItems }: { equippedItems: string[] }) => {
   return (
     <div>
       <h2>Equipment</h2>

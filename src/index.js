@@ -32,14 +32,8 @@ const App = () => {
     currentSubLocation,
     setCurrentSubLocation,
   } = useLocations();
-  const {
-    inventory,
-    setInventory,
-    equippedItem,
-    setEquippedItem,
-    equippedItems,
-    setEquippedItems,
-  } = useInventory();
+  const { inventory, setInventory, equippedItem, equippedItems, tryEquipItem } =
+    useInventory();
   const { recipes, setRecipes, currentRecipe } = useCrafting();
 
   useTick(() => {
@@ -208,9 +202,8 @@ const App = () => {
         items={itemsList}
         inventory={inventory}
         equippedItem={equippedItem}
-        setEquippedItem={setEquippedItem}
         equippedItems={equippedItems}
-        setEquippedItems={setEquippedItems}
+        tryEquipItem={tryEquipItem}
       />
       <Equipment />
       <SkillInfo />

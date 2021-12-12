@@ -1,17 +1,18 @@
 import React from "react";
-import { depictEntriesKeyType, removeArrayIndex } from "~src/common";
+import { depictEntriesKeyType } from "~src/common";
 import { itemsList } from "..";
 
 const Inventory = ({
   inventory = {},
   items = {},
   equippedItems = [],
-  setEquippedItems = () => {},
+  tryEquipItem,
 }: {
   inventory: { [key: string]: number };
   items: typeof itemsList;
   equippedItems: string[];
   setEquippedItems: (itemKey: string[]) => void;
+  tryEquipItem: (itemKey: string) => void;
 }) => {
   return (
     <div>
@@ -27,29 +28,15 @@ const Inventory = ({
               itemLabel += ` - ${quantity}`;
             }
 
-            const equippedItemIndex = equippedItems.findIndex(
+            const isEquipped = equippedItems.some(
               (equippedItem) => equippedItem === itemKey
             );
-            const isEquipped = equippedItemIndex > -1;
 
             return (
               <li
                 key={itemKey}
                 onClick={() => {
-                  let newEquippedItems = [...equippedItems];
-
-                  if (isEquipped) {
-                    // If item already equipped, un-equip the item
-                    newEquippedItems = removeArrayIndex(
-                      newEquippedItems,
-                      equippedItemIndex
-                    );
-                  } else {
-                    // Equip the new item otherwise
-                    newEquippedItems = [...newEquippedItems, itemKey];
-                  }
-
-                  setEquippedItems(newEquippedItems);
+                  tryEquipItem(itemKey);
                 }}
                 style={{
                   fontWeight: isEquipped ? "bold" : "normal",
