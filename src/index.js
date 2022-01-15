@@ -205,7 +205,7 @@ const App = () => {
         equippedItems={equippedItems}
         tryEquipItem={tryEquipItem}
       />
-      <Equipment />
+      <Equipment equippedItems={equippedItems} />
       <SkillInfo />
       {action?.type === "craft" ? <Crafting /> : null}
       {isShoppingLocation(
