@@ -21,6 +21,8 @@ const itemsList: { [key: string]: Item } = {
   bronzeIngot: { name: "Bronze Ingot", prices: { sell: 6 } },
   ironIngot: { name: "Iron Ingot", prices: { sell: 8 } },
   steelIngot: { name: "Steel Ingot", prices: { sell: 15 } },
+  shirt: { name: "Shirt", equipmentSlot: EquipmentSlot.body },
+  pants: { name: "Pants", equipmentSlot: EquipmentSlot.legs },
   ...woodcuttingItems,
   ...miningItems,
 };

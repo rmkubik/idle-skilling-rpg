@@ -4,6 +4,8 @@ const initialInventory: { [key: string]: number } = {
   stone: 100,
   copperOre: 100,
   woodOak: 100,
+  shirt: 1,
+  pants: 1,
 };
 
 export default initialInventory;

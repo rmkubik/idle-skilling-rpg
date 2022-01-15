@@ -4,7 +4,11 @@ import { removeArrayIndex } from "~src/common";
 
 const useInventory = () => {
   const [inventory, setInventory] = useState(initialInventory);
-  const [equippedItems, setEquippedItems] = useState(["stonePickAxe"]);
+  const [equippedItems, setEquippedItems] = useState([
+    "stonePickAxe",
+    "shirt",
+    "pants",
+  ]);
 
   const [equippedItem] = equippedItems;
 
