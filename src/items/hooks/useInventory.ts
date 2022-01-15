@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { initialInventory } from "~/src/items";
+import { initialInventory, itemsList } from "~/src/items";
 import { removeArrayIndex } from "~src/common";
 
 const useInventory = () => {
@@ -33,6 +33,21 @@ const useInventory = () => {
       // If item already equipped, un-equip the item
       newEquippedItems = removeArrayIndex(newEquippedItems, equippedItemIndex);
     } else {
+      // If another item is already in this slot, un-equip it
+      const newlyEquippedItemSlot = itemsList[itemKey].equipmentSlot;
+      const otherEquippedItemSlot = newEquippedItems.findIndex(
+        (otherEquippedItemKey) =>
+          itemsList[otherEquippedItemKey].equipmentSlot ===
+          newlyEquippedItemSlot
+      );
+
+      if (otherEquippedItemSlot > -1) {
+        newEquippedItems = removeArrayIndex(
+          newEquippedItems,
+          otherEquippedItemSlot
+        );
+      }
+
       // Equip the new item otherwise
       newEquippedItems = [...newEquippedItems, itemKey];
     }
